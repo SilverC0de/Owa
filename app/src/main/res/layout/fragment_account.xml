@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:orientation="horizontal"
+            android:background="@drawable/board">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/avi"
+                app:roundAsCircle="true"
+                app:placeholderImage="@drawable/male" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Balogun Silver"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp"
+                    android:id="@+id/account_name"
+                    android:gravity="center_vertical"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="silverg@fluxtechafrica.com"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    android:id="@+id/account_mail"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_margin="8dp"
+                android:textColor="@color/colorText"
+                android:hint="Full Name"
+                android:id="@+id/edit_name"
+                android:enabled="false"
+                android:background="@drawable/edit" />
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:padding="2dp"
+                android:alpha=".4"
+                android:id="@+id/pencil_name"
+                android:src="@drawable/pencil" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:textColor="@color/colorText"
+                android:layout_margin="8dp"
+                android:hint="Mobile Number"
+                android:id="@+id/edit_number"
+                android:enabled="false"
+                android:background="@drawable/edit" />
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:padding="2dp"
+                android:alpha=".4"
+                android:id="@+id/pencil_number"
+                android:src="@drawable/pencil" />
+        </LinearLayout>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="12dp"
+            android:id="@+id/edit_gender"
+            android:background="@drawable/edit" />
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_margin="16dp"
+            android:hint="Date of Birth"
+            android:textColor="@color/colorText"
+            android:id="@+id/edit_dob"
+            android:textSize="16sp"
+            android:background="@drawable/edit" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="88dp"
+                android:padding="12dp"
+                android:textColor="@color/colorText"
+                android:layout_margin="8dp"
+                android:hint="Primary Address"
+                android:id="@+id/edit_address"
+                android:enabled="false"
+                android:background="@drawable/edit" />
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:padding="2dp"
+                android:alpha=".4"
+                android:id="@+id/pencil_address"
+                android:src="@drawable/pencil" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

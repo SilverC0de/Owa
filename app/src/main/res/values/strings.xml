@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Owa</string>
+    <string name="naira">&#8358;</string>
+    <string name="cancellation_policy">Free cancellation policy for 48 hours. If you wan\'t to cancel after 48 hours, you will only get
+        a 50% refund.</string>
+    <string name="bullet">•</string>
+    <string name="agreement">You agree to rent this dwelling on a month-to-month basis, payable in advance on each month calendar year.
+ \n\n
+The security/cleaning deposit on this dwelling has been included in the total charges.
+
+\n\nTENANTS AGREE TO THE FOLLOWING:  \n\n
+\n1) to accept the dwelling "as is," having already inspected it.
+\n2) to keep yards and garbage areas clean.
+\n3) to keep from making loud noises and disturbances and to
+play music and broadcast  programs at all times so as not to disturb other people\'s peace and quiet.
+\n4) not to paint the dwelling without first getting Owner(s) written permission.
+\n5) to park motor vehicles in the assigned space and to keep that space clean of oil drippings and grease.
+\n6) not to repair motor vehicle on the premises (unless it is in an enclosed garage) if such repairs will take
+longer than a day.
+\n7) to allow Owner(s) to inspect the dwelling, work on it, or show it to prospective tenants at any and all reasonable times.
+\n8) not to keep any liquid-filled furniture in this
+dwelling.
+\n9)  to pay rent by check or money order made out to the Owner(s)
+\n10) to pay for repairs of all damage, they or their guests have caused.
+\n11) to pay for any windows broken in the dwelling while they live there.
+
+\n\nViolation of any part of this Agreement or nonpayment of rent when due shall be cause for eviction under applicable code sections.  The prevailing party (shall/shall not) recover reasonable legal service fees involved.
+
+\n\nTenants hereby acknowledge that they have read this Agreement, understand it, agree to it.</string>
+
+
+    <string-array name="months">
+        <item>Set Months</item>
+        <item>1 Month</item>
+        <item>2 Months</item>
+        <item>3 Month</item>
+        <item>4 Months</item>
+        <item>5 Month</item>
+        <item>6 Months</item>
+        <item>7 Month</item>
+        <item>8 Months</item>
+        <item>9 Month</item>
+        <item>10 Months</item>
+        <item>12 Month</item>
+        <item>12 Months</item>
+    </string-array>
+    <string-array name="one_guest">
+        <item>Set Guest</item>
+        <item>1 Guest</item>
+    </string-array>
+
+    <string-array name="two_guests">
+        <item>Set Guest</item>
+        <item>1 Guest</item>
+        <item>2 Guests</item>
+    </string-array>
+
+    <string-array name="three_guests">
+        <item>Set Guest</item>
+        <item>1 Guest</item>
+        <item>2 Guests</item>
+        <item>3 Guests</item>
+    </string-array>
+
+    <string-array name="four_guests">
+        <item>Set Guest</item>
+        <item>1 Guest</item>
+        <item>2 Guests</item>
+        <item>3 Guests</item>
+        <item>4 Guests</item>
+    </string-array>
+
+    <string-array name="five_guests">
+        <item>Set Guest</item>
+        <item>1 Guest</item>
+        <item>2 Guests</item>
+        <item>3 Guests</item>
+        <item>4 Guests</item>
+        <item>5 Guests</item>
+    </string-array>
+
+    <string-array name="six_guests">
+        <item>Set Guest</item>
+        <item>1 Guest</item>
+        <item>2 Guests</item>
+        <item>3 Guests</item>
+        <item>4 Guests</item>
+        <item>5 Guests</item>
+        <item>6 Guests</item>
+    </string-array>
+
+    <string-array name="property_type">
+        <item>Entire Apartment</item>
+        <item>Room</item>
+        <item>Bed Space</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="option">
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/fragment" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/navigation"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:id="@+id/home"
+                android:background="@color/colorBar"
+                android:scaleType="centerInside"
+                android:src="@drawable/home_selected"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:layout_weight="1"
+                android:id="@+id/favourite"
+                android:scaleType="centerInside"
+                android:src="@drawable/love"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:id="@+id/chat"
+                android:padding="8dp"
+                android:src="@drawable/chat"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:id="@+id/account"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:src="@drawable/account"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Home"
+                android:textColor="@color/colorAccent"
+                android:background="@color/colorBar"
+                android:textSize="12sp"
+                android:id="@+id/home_text"
+                android:gravity="center" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Saved"
+                android:textColor="@color/colorText"
+                android:textSize="12sp"
+                android:id="@+id/favourite_text"
+                android:gravity="center" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/chat_lay"
+                android:layout_gravity="center">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+                <FrameLayout
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center|end"
+                    android:id="@+id/notification"
+                    android:visibility="gone"
+                    android:background="@drawable/button_circle" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inbox"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:id="@+id/chat_text"
+                    android:textColor="@color/colorText"
+                    android:gravity="center" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Profile"
+                android:textSize="12sp"
+                android:textColor="@color/colorText"
+                android:id="@+id/account_text"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/filter" />
+</RelativeLayout>

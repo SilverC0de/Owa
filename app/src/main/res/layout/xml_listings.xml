@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:padding="4dp">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:id="@+id/list_image"
+            app:roundedCornerRadius="12dp"
+            app:actualImageScaleType="centerCrop"
+            app:placeholderImageScaleType="centerCrop"
+            app:failureImageScaleType="centerCrop"
+            app:retryImageScaleType="centerCrop"
+            app:placeholderImage="@drawable/view" />
+        <com.varunest.sparkbutton.SparkButton
+            android:id="@+id/list_save"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:padding="2dp"
+            android:layout_margin="12dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:sparkbutton_inActiveImage="@drawable/like"
+            app:sparkbutton_activeImage="@drawable/liked"
+            app:sparkbutton_iconSize="24dp"
+            app:sparkbutton_secondaryColor="@color/colorAccent" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entire apartment"
+            android:textSize="14sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:background="@drawable/button_cover"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/list_hint" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Ikeja"
+            android:textSize="14sp"
+            android:gravity="end"
+            android:id="@+id/list_city" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="House at ahmadiya"
+        android:paddingStart="20dp"
+        android:textSize="16sp"
+        android:textColor="@color/colorText"
+        android:id="@+id/list_name" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="&#8358;50,000 / Month"
+        android:paddingStart="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorTextPro"
+        android:id="@+id/list_price" />
+</LinearLayout>

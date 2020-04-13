@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card"
+            android:padding="4dp"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:padding="12dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/search"/>
+            <SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:gravity="center_vertical"
+                android:background="#00000000"
+                android:id="@+id/search"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:searchIcon="@null"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@color/colorPrimary"
+                android:queryHint="Try searching for a location" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/apartment"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/card">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/apartment_image"
+                app:roundedCornerRadius="20dp"
+                app:placeholderImage="@drawable/view" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/apartment_text"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:textColor="@color/colorTextPro"
+                android:text="Your apartment at ahmadiya" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorTextPro"
+                    android:padding="12dp"
+                    android:id="@+id/greetings"
+                    android:textStyle="bold"
+                    android:text="What can we help you find" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selection">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_weight="1"
+                        android:elevation="2dp"
+                        android:id="@+id/select_apartment"
+                        android:src="@drawable/entire_apartment"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_weight="1"
+                        android:elevation="2dp"
+                        android:id="@+id/select_bed"
+                        android:src="@drawable/bed_space"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_weight="1"
+                        android:elevation="2dp"
+                        android:id="@+id/select_room"
+                        android:src="@drawable/private_room"/>
+                </LinearLayout>
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorTextPro"
+                    android:padding="12dp"
+                    android:id="@+id/header"
+                    android:textStyle="bold"
+                    android:text="Apartments around you" />
+                <com.flux.owa.XListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:visibility="invisible"
+                    android:dividerHeight="40dp"
+                    android:divider="#00000000"
+                    android:id="@+id/listings" />
+                <ProgressBar
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:id="@+id/progress"
+                    android:layout_margin="40dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/filter"
+        android:padding="12dp"
+        android:layout_margin="22dp"
+        android:id="@+id/filter_view"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_circle"/>
+</RelativeLayout>

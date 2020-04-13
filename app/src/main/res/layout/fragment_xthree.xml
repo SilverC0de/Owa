@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/head"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:id="@+id/back"
+            android:src="@drawable/back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Step 3 of 3"
+            android:padding="12dp"
+            android:layout_gravity="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:orientation="horizontal">
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorAccent" />
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorAccent" />
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:padding="2dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorAccent" />
+        </LinearLayout>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:layout_below="@id/head"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="54dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Review and pay"
+                android:textStyle="bold"
+                android:padding="12dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorTextPro"
+                android:gravity="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="14sp"
+                    android:background="@color/colorBar"
+                    android:textColor="@color/colorText"
+                    android:text="Place" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Entire place in Ijeka"
+                    android:textSize="15sp"
+                    android:paddingStart="20dp"
+                    android:id="@+id/review_place"
+                    android:textColor="@color/colorTextPro"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="14sp"
+                    android:background="@color/colorBar"
+                    android:textColor="@color/colorText"
+                    android:text="Period" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="6 Months"
+                    android:textSize="15sp"
+                    android:paddingStart="20dp"
+                    android:id="@+id/review_month"
+                    android:textColor="@color/colorTextPro"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="14sp"
+                    android:background="@color/colorBar"
+                    android:textColor="@color/colorText"
+                    android:text="Dates" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Feb 3, 2019  -  Feb 5, 2020"
+                    android:textSize="15sp"
+                    android:paddingStart="20dp"
+                    android:id="@+id/review_date"
+                    android:textColor="@color/colorTextPro"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="14sp"
+                    android:background="@color/colorBar"
+                    android:textColor="@color/colorText"
+                    android:text="Total" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="N440,000"
+                    android:textSize="15sp"
+                    android:paddingStart="20dp"
+                    android:id="@+id/review_total"
+                    android:textColor="@color/colorTextPro"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancellation Policy"
+                android:padding="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorTextPro" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancellation_policy"
+                android:padding="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/colorText" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:id="@+id/add_card"
+                android:layout_margin="8dp"
+                android:background="@drawable/card"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/cc" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:layout_height="0dp"
+                        android:id="@+id/payment_name"
+                        android:textColor="@color/colorTextPro"
+                        android:text="Add Payment Method" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_weight="2"
+                        android:layout_height="0dp"
+                        android:textColor="@color/colorText"
+                        android:gravity="center_vertical"
+                        android:id="@+id/payment_number"
+                        android:text="You won't need to add payment details next time" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/button"
+        android:layout_margin="8dp"
+        android:text="Pay"
+        android:id="@+id/step_three_agree"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/colorPrimary"
+        style="?attr/borderlessButtonStyle" />
+</RelativeLayout>

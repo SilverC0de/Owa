@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityTIPI">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kindly take this quick personality test, it let's us know the apartments that suits you the most"
+        android:padding="8dp"
+        android:textSize="14sp"
+        android:alpha=".6"
+        android:textColor="@color/colorText" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:padding="8dp"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@color/colorTextPro"
+        android:textStyle="bold"
+        android:id="@+id/tipi_question"
+        android:text="I am very enthusiastic and love to be around people"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tipi_disagree_strongly"
+        android:layout_margin="6dp"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#E64A19" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Never"
+            android:padding="10dp"
+            android:textColor="@color/colorText" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha=".8"
+            android:layout_margin="4dp"
+            android:id="@+id/tipi_disagree_strongly_image"
+            android:layout_gravity="center"
+            android:src="@drawable/nocheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:id="@+id/tipi_disagree_moderately"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#F57C00" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Negative"
+            android:padding="10dp"
+            android:textColor="@color/colorText" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha=".8"
+            android:layout_margin="4dp"
+            android:id="@+id/tipi_disagree_moderately_image"
+            android:layout_gravity="center"
+            android:src="@drawable/nocheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:id="@+id/tipi_disagree_a_little"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#FFA000" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="It depends"
+            android:padding="10dp"
+            android:textColor="@color/colorText" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha=".8"
+            android:layout_margin="4dp"
+            android:id="@+id/tipi_disagree_a_little_image"
+            android:layout_gravity="center"
+            android:src="@drawable/nocheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tipi_neutral"
+        android:layout_margin="6dp"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#C1C1C1" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Hmmm, I can't say"
+            android:padding="10dp"
+            android:textColor="@color/colorText" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha=".8"
+            android:layout_margin="4dp"
+            android:id="@+id/tipi_neutral_image"
+            android:layout_gravity="center"
+            android:src="@drawable/nocheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tipi_agree_a_little"
+        android:layout_margin="6dp"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#26F1D9" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Yea, a little"
+            android:padding="10dp"
+            android:textColor="@color/colorText" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha=".8"
+            android:layout_margin="4dp"
+            android:id="@+id/tipi_agree_a_little_image"
+            android:layout_gravity="center"
+            android:src="@drawable/nocheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tipi_agree_moderately"
+        android:layout_margin="6dp"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#11CCB6" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="True"
+            android:padding="10dp"
+            android:textColor="@color/colorText" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha=".8"
+            android:layout_margin="4dp"
+            android:id="@+id/tipi_agree_moderately_image"
+            android:layout_gravity="center"
+            android:src="@drawable/nocheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:id="@+id/tipi_agree_strongly"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#04A18F" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Very very true"
+            android:padding="10dp"
+            android:textColor="@color/colorText" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha=".8"
+            android:layout_margin="4dp"
+            android:id="@+id/tipi_agree_strongly_image"
+            android:layout_gravity="center"
+            android:src="@drawable/nocheck" />
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="12dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tipi_count"
+        android:text="Question 1 of 4"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:alpha=".6"
+        android:textColor="@color/colorText" />
+</LinearLayout>

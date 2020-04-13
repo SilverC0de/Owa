@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@color/colorSemiPrimary">
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="12dp"
+        android:id="@+id/close"
+        android:layout_gravity="end"
+        android:src="@drawable/close" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorText"
+            android:text="Property Type" />
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:id="@+id/filter_type_of_house"
+            android:background="@drawable/white"/>
+    </LinearLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorText"
+            android:text="Price Range" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="10dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/white"
+            android:textColor="@color/colorText"
+            android:id="@+id/filter_price_display" />
+    </LinearLayout>
+    <com.jaygoo.widget.RangeSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:id="@+id/filter_price"
+        app:rsb_gravity="center"
+        app:rsb_min="10000"
+        app:rsb_max="10000000"
+        app:rsb_progress_color="@color/colorAccent"
+        app:rsb_progress_height="4dp"
+        app:rsb_mode="range"
+        app:rsb_indicator_background_color="#00000000" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="Filter Results"
+        android:background="@drawable/button"
+        android:layout_margin="8dp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/filter_results"
+        style="?attr/borderlessButtonStyle" />
+</LinearLayout>
