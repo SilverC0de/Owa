@@ -3,9 +3,11 @@ package com.flux.owa;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -20,6 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import java.text.MessageFormat;
 import java.text.NumberFormat;
@@ -37,7 +44,7 @@ public class FragmentReserve extends XFragment implements AdapterView.OnItemSele
     private Calendar now, instance;
     private TextView availability;
     private String x_check_in, x_check_out;
-    private static boolean tvAdded = false,  sofaAdded = false, bedAdded = false;
+    private boolean tvAdded = false,  sofaAdded = false, bedAdded = false;
 
 
 
@@ -78,6 +85,7 @@ public class FragmentReserve extends XFragment implements AdapterView.OnItemSele
 
 
 
+
         ArrayAdapter<CharSequence> months_adapter = ArrayAdapter.createFromResource(cx, R.array.months, R.layout.xml_spinner);
 
         months_adapter.setDropDownViewResource(R.layout.xml_spinner);
@@ -89,6 +97,7 @@ public class FragmentReserve extends XFragment implements AdapterView.OnItemSele
         initializeMonthsCalculator(0);
         initializeGuestView(guest_spinner, guest);
         initializeView(view);
+
 
 
         reserve.setOnClickListener(new View.OnClickListener() {

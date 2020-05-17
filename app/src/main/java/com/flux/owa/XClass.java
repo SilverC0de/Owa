@@ -12,6 +12,7 @@ import okhttp3.Response;
 
 class XClass {
     private static final String api = "https://api.owanow.co/alpha/";
+    static String tutured = "tutored";
     static String sharedPreferences = "sp";
     static String buildAPI = "alpha"; //alpha
     static String outcast = "";
@@ -20,7 +21,7 @@ class XClass {
     static String gender = "gender";
     static String dob = "dob";
     static String okTested = "tess";
-    static String induction = "induc";
+    static String induction = "induct";
     static String notification = "notifd";
 
     static String mail = "mail";

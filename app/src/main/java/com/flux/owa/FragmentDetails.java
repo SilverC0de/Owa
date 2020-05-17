@@ -1,9 +1,13 @@
 package com.flux.owa;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,9 +16,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import com.tmall.ultraviewpager.UltraViewPager;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,6 +46,7 @@ import okhttp3.Response;
 public class FragmentDetails extends XFragment {
 
 
+    private UltraViewPager pager;
     private ProgressBar progress;
     private String locale = null;
 
@@ -47,6 +57,7 @@ public class FragmentDetails extends XFragment {
 
         progress = view.findViewById(R.id.progress);
         ImageView close = view.findViewById(R.id.close);
+        Button reserve = view.findViewById(R.id.reserve);
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +69,66 @@ public class FragmentDetails extends XFragment {
         Bundle bnd = getArguments();
         if (bnd != null) locale = bnd.getString("locale");
 
+        boolean tutured = data.getBoolean(XClass.tutured, false);
+        if (!tutured){
+            ShowcaseView e = new ShowcaseView.Builder(face)
+                    .setContentTitle("Apartment")
+                    .setContentText("Scroll down to view apartment amenities or request for a tour")
+                    .hideOnTouchOutside()
+                    .setStyle(R.style.HighlightTheme)
+                    .build();
+            e.setOnShowcaseEventListener(new OnShowcaseEventListener() {
+                @Override
+                public void onShowcaseViewHide(ShowcaseView showcaseView) {
+                    SharedPreferences.Editor e = data.edit();
+                    e.putBoolean(XClass.tutured, true);
+                    e.apply();
+                    ShowcaseView ev = new ShowcaseView.Builder(face)
+                            .setTarget(new ViewTarget(reserve))
+                            .setContentTitle("Reserve")
+                            .setContentText("Click on the 'Reserve' button if you're interested in this apartment")
+                            .hideOnTouchOutside()
+                            .setStyle(R.style.HighlightTheme)
+                            .build();
+                    ev.setOnShowcaseEventListener(new OnShowcaseEventListener() {
+                        @Override
+                        public void onShowcaseViewHide(ShowcaseView showcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseViewShow(ShowcaseView showcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
+
+                        }
+                    });
+                }
+
+                @Override
+                public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+
+                }
+
+                @Override
+                public void onShowcaseViewShow(ShowcaseView showcaseView) {
+
+                }
+
+                @Override
+                public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
+
+                }
+            });
+        }
         initializeDetails(view, locale);
         return view;
     }
@@ -104,10 +175,13 @@ public class FragmentDetails extends XFragment {
 
                             final String individuals = object.getString("guest");
 
-                            SimpleDraweeView image = view.findViewById(R.id.details_image);
+                            pager = view.findViewById(R.id.details_pager);
+                            if (getArguments() != null) ximage = getArguments().getString("image");
+                            initializeImages(locale, ximage);
+
+
 
                             TextView name = view.findViewById(R.id.details_name);
-
                             TextView price = view.findViewById(R.id.details_price);
 
                             TextView guest = view.findViewById(R.id.details_guest);
@@ -157,7 +231,6 @@ public class FragmentDetails extends XFragment {
 
                             if (getArguments() != null) cost = getArguments().getInt("cost");
                             if (getArguments() != null) xhint = getArguments().getString("hint");
-                            if (getArguments() != null) ximage = getArguments().getString("image");
                             if (getArguments() != null) xName = getArguments().getString("name");
                             if (getArguments() != null) xAgent = getArguments().getString("agent");
                             if (getArguments() != null) xAgentName = getArguments().getString("agent_name");
@@ -167,7 +240,6 @@ public class FragmentDetails extends XFragment {
 
 
                             name.setText(xName);
-                            image.setImageURI(ximage);
                             price.setText(xprice);
                             hint.setText(xhint);
 
@@ -193,18 +265,7 @@ public class FragmentDetails extends XFragment {
 
                             ////////////////////////////////////////////////////////////////////////////
 
-                            image.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    FragmentImage fragmentImage = new FragmentImage();
 
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("locale", locale);
-
-                                    fragmentImage.setArguments(bundle);
-                                    fm.beginTransaction().add(R.id.fragment, fragmentImage).addToBackStack(null).commit();
-                                }
-                            });
 
 
                             final String finalXName = xName;
@@ -277,6 +338,52 @@ public class FragmentDetails extends XFragment {
                         } catch (JSONException i) {
                             progress.setVisibility(View.GONE);
                         }
+                    }
+                });
+            }
+        });
+    }
+
+
+    private void initializeImages(String ville, String index){
+        ArrayList<String> img = new ArrayList<>();
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(XClass.apiImage + "?locale=" + ville).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String json = response.body().string();
+                face.runOnUiThread(() -> {
+                    try {
+                        JSONArray arr = new JSONArray(json);
+                        if (arr.length() != 0){
+                            for (int i = 0; i < arr.length(); i++){
+                                JSONObject obj = arr.getJSONObject(i);
+                                String path = obj.getString("path");
+                                img.add(path);
+                            }
+                        }
+                    } catch (JSONException ignored){
+                        img.add(index); //add the default image if there are no images
+                    } finally {
+                        XPager adapter = new XPager(face, cx, img);
+                        pager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+                        pager.setBackgroundResource(0);
+                        pager.setAdapter(adapter);
+                        pager.initIndicator();
+                        pager.getIndicator()
+                                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+                                .setFocusColor(getResources().getColor(R.color.colorPrimary))
+                                .setNormalColor(getResources().getColor(R.color.colorLite))
+                                .setRadius((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
+                        pager.getIndicator().setMargin(0,0,0,20);
+                        pager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+                        pager.getIndicator().build();
                     }
                 });
             }

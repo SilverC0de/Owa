@@ -9,10 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import java.util.Locale;
 
 public class ActivityTIPI extends XActivity {
 
+    LottieAnimationView lottie;
     static int round = 1;
     int test_1, test_2, test_3, test_4, answer;
 
@@ -21,6 +24,7 @@ public class ActivityTIPI extends XActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_t_i_p_i);
 
+        lottie = findViewById(R.id.lottie);
         answerListeners();
     }
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -173,6 +177,7 @@ public class ActivityTIPI extends XActivity {
                 final ImageView six_image = findViewById(R.id.tipi_agree_moderately_image);
                 final ImageView seven_image = findViewById(R.id.tipi_agree_strongly_image);
 
+                int[] raw = {R.raw.teamwork, R.raw.work, R.raw.quiet, R.raw.raw_1_friend};
 
 
                 final String[] questions = {
@@ -221,6 +226,9 @@ public class ActivityTIPI extends XActivity {
                     finish();
                 } else {
 
+                    lottie.setAnimation(raw[round - 1]);
+//                    lottie.setRepeatCount(LottCou);
+                    lottie.playAnimation();
                     question.setText(questions[round - 1]);
                     question_count.setText(String.format(Locale.ENGLISH, "Question %d of 4", round));
 

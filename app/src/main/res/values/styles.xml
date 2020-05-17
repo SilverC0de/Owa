@@ -15,4 +15,12 @@
         <item name="android:windowMinWidthMinor">98%</item>
     </style>
 
+    <style name="HighlightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="sv_backgroundColor">#CC000000</item>
+        <item name="sv_showcaseColor">#E3F2FD</item>
+        <item name="sv_buttonText">Got It</item>
+        <item name="sv_tintButtonColor">false</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 </resources>

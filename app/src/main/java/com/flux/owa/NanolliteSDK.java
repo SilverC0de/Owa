@@ -38,11 +38,12 @@ final class NanolliteSDK {
         fx.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         final float dpi = cx.getResources().getDisplayMetrics().density;
+
         ControllerListener<ImageInfo> listener = new BaseControllerListener<ImageInfo>(){
             @Override
             public void onIntermediateImageSet(String id, ImageInfo imageInfo) {
                 if (imageInfo != null){
-                    image.getLayoutParams().width = displayMetrics.widthPixels;
+                    image.getLayoutParams().width = imageInfo.getWidth() * Math.round(dpi);
                     image.getLayoutParams().height = imageInfo.getHeight()  * Math.round(dpi);
                     image.setAspectRatio((float) imageInfo.getWidth() / imageInfo.getHeight());
                 }
@@ -51,7 +52,7 @@ final class NanolliteSDK {
             @Override
             public void onFinalImageSet(String id, ImageInfo imageInfo, Animatable animatable) {
                 if (imageInfo != null){
-                    image.getLayoutParams().width = displayMetrics.widthPixels;
+                    image.getLayoutParams().width = imageInfo.getWidth() * Math.round(dpi);
                     image.getLayoutParams().height = imageInfo.getHeight() * Math.round(dpi);
                     image.setAspectRatio((float) imageInfo.getWidth() / imageInfo.getHeight());
                 }

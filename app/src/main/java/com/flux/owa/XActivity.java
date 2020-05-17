@@ -18,6 +18,8 @@ public abstract class XActivity extends AppCompatActivity {
     OkHttpClient httpClient;
 
 
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -35,6 +37,11 @@ public abstract class XActivity extends AppCompatActivity {
         httpClient = new OkHttpClient();
         init();
     }
+
+    //what you need, hald way done, he got stuck somewhere, paxful api, send you bitcoin, from their wn paxful acounnt, linking to the website, come to website, edirect to paxful for payment,
+    // one time auth, enter amount and leave his balance, one time linking, blockchain wallet on the website, (2 selling channel, blockchain and paxful), reduce the manual process,
+    // paystack pays you instantly, webapp,
+
 
     void init(){
         String buildAPI = data.getString(XClass.buildAPI, XClass.buildAPI);

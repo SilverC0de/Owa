@@ -18,17 +18,11 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="240dp">
-                <com.facebook.drawee.view.SimpleDraweeView
+                <com.tmall.ultraviewpager.UltraViewPager
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:id="@+id/details_image"
-                    app:actualImageScaleType="centerCrop"
-                    app:placeholderImageScaleType="centerCrop"
-                    app:failureImageScaleType="centerCrop"
-                    app:retryImageScaleType="centerCrop"
-                    app:placeholderImage="@drawable/view" />
+                    android:background="@drawable/view"
+                    android:id="@+id/details_pager"/>
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"

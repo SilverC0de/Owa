@@ -30,5 +30,6 @@
         android:layout_marginBottom="20dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary"
+        style="?attr/borderlessButtonStyle"/>
 </RelativeLayout>

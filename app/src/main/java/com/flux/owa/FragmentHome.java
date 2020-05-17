@@ -246,6 +246,7 @@ public class FragmentHome extends XFragment {
                 .add("batch", String.valueOf(batch))
                 .build();
 
+
         Log.e("silvr", "--hint" + hint);
         Log.e("silvr", "--city" + city);
         Log.e("silvr", "--batch" + batch);
@@ -378,6 +379,7 @@ public class FragmentHome extends XFragment {
                 @Override
                 public void onEvent(ImageView button, boolean buttonState) {
 
+                    //i
                 }
 
                 @Override

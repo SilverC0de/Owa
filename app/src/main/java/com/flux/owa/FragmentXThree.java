@@ -78,7 +78,7 @@ public class FragmentXThree extends XFragment {
         initiatePaystackEngine(view); //load payment card
 
         finalCost = cost;
-        proceed.setText(String.format("Pay %s%s", cx.getResources().getString(R.string.naira), NumberFormat.getNumberInstance().format(Integer.parseInt(finalCost) / Integer.parseInt(month))));
+        proceed.setText(String.format("Pay %s%s", cx.getResources().getString(R.string.naira), NumberFormat.getNumberInstance().format(Integer.parseInt(finalCost) / (Integer.parseInt(month)) * 2)));
         final String finalOut = out;
         final String finalCity = city;
         final String finalHint = hint;
@@ -97,7 +97,7 @@ public class FragmentXThree extends XFragment {
                     proceed.setBackgroundResource(R.drawable.button_off);
 
 
-                    int amount = (Integer.parseInt(finalCost) / Integer.parseInt(finalMonth)) * 100;
+                    int amount = (Integer.parseInt(finalCost) / ( Integer.parseInt(finalMonth))) * 2 * 100;
                     //upload monthly carges
                     //upload card token
                     //upload start and end date
@@ -110,8 +110,10 @@ public class FragmentXThree extends XFragment {
                         public void onSuccess(Transaction transaction) {
                             XClass.updateUser(XClass.tenant, finalXlocale, mail);
                             XClass.updateUser("bill_total", finalCost, mail);
-                            XClass.updateUser("bill_paid",  String.valueOf(Integer.parseInt(finalCost) / Integer.parseInt(finalMonth)), mail);
+                            XClass.updateUser("bill_paid",  String.valueOf((Integer.parseInt(finalCost) / Integer.parseInt(finalMonth)) * 2), mail);
                             XClass.updateUser("bill_month", finalMonth, mail);
+                            XClass.updateUser("bill_invoice", String.valueOf(Integer.parseInt(finalCost) / Integer.parseInt(finalMonth)), mail);
+                            //bill invoice is how much to be deducted subsequently
 
 
                             SharedPreferences.Editor e = data.edit();
@@ -134,7 +136,7 @@ public class FragmentXThree extends XFragment {
 
                             proceed.setBackgroundResource(R.drawable.button);
                             proceed.setTextColor(cx.getResources().getColor(R.color.colorPrimary));
-                            proceed.setText(String.format("Pay %s%s", cx.getResources().getString(R.string.naira), NumberFormat.getNumberInstance().format(Integer.parseInt(finalCost))));
+                            proceed.setText(String.format("Pay %s%s", cx.getResources().getString(R.string.naira), NumberFormat.getNumberInstance().format((Integer.parseInt(finalCost) / (Integer.parseInt(finalMonth))) * 2)));
                         }
                     });
                 }
@@ -152,8 +154,14 @@ public class FragmentXThree extends XFragment {
     }
 
 
+
+
+
+
+
+
     private void initiatePaystackEngine(Dialog dl, String name, String number, String cvv, int mm, int yy){
-        PaystackSdk.setPublicKey(XClass.paystackKei);
+        PaystackSdk.setPublicKey(XClass.paystackKey);
         String mail = data.getString(XClass.mail, null);
         Card card = new Card(number, mm, yy, cvv);
         if (!card.isValid()){
@@ -175,10 +183,19 @@ public class FragmentXThree extends XFragment {
         }
     }
 
+
+
+
+
+
+
+
+
     private void initiatePaystackEngine(View v){
         LinearLayout add = v.findViewById(R.id.add_card);
         final TextView card_name = v.findViewById(R.id.payment_name);
         final TextView card_number = v.findViewById(R.id.payment_number);
+
 
         String cc = data.getString(XClass.cardCvv, XClass.outcast);
         if (cc.isEmpty()){

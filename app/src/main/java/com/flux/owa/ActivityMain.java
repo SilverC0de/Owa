@@ -3,11 +3,19 @@ package com.flux.owa;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 public class ActivityMain extends XActivity {
 
@@ -41,6 +49,21 @@ public class ActivityMain extends XActivity {
         if (isNotification){
             notification.setVisibility(View.VISIBLE);
         }
+
+
+
+//
+//        new ShowcaseView.Builder(this)
+//                .setTarget(new ActionViewTarget(this, ActionViewTarget.Type.HOME))
+//                .setContentTitle("Home")
+//                .setContentText("Where us the home button")
+//                .hideOnTouchOutside()
+//                .build();
+
+
+        initializeIntro();
+
+
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,4 +178,93 @@ public class ActivityMain extends XActivity {
             }
         });
     }
+
+    private void initializeIntro() {
+        boolean tutured = data.getBoolean(XClass.tutured, false);
+
+        if (!tutured) {
+            ShowcaseView e = new ShowcaseView.Builder(this)
+                    .setTarget(new ViewTarget(home))
+                    .setContentTitle("Apartments")
+                    .setContentText("Available apartments will be displayed here")
+                    .hideOnTouchOutside()
+                    .setStyle(R.style.HighlightTheme)
+                    .build();
+            e.setOnShowcaseEventListener(new OnShowcaseEventListener() {
+                @Override
+                public void onShowcaseViewHide(ShowcaseView showcaseView) {
+                    ShowcaseView e = new ShowcaseView.Builder(ActivityMain.this)
+                            .setTarget(new ViewTarget(favourite))
+                            .setContentTitle("Favourites")
+                            .setContentText("Apartments you like will be displayed here")
+                            .hideOnTouchOutside()
+                            .setStyle(R.style.HighlightTheme)
+                            .build();
+                    e.setOnShowcaseEventListener(new OnShowcaseEventListener() {
+                        @Override
+                        public void onShowcaseViewHide(ShowcaseView showcaseView) {
+                            ShowcaseView e = new ShowcaseView.Builder(ActivityMain.this)
+                                    .setTarget(new ViewTarget(chat))
+                                    .setContentTitle("Inbox")
+                                    .setContentText("You can chat with our agents about houses you like")
+                                    .hideOnTouchOutside()
+                                    .setStyle(R.style.HighlightTheme)
+                                    .build();
+                            e.setOnShowcaseEventListener(new OnShowcaseEventListener() {
+                                @Override
+                                public void onShowcaseViewHide(ShowcaseView showcaseView) {
+
+                                }
+
+                                @Override
+                                public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+
+                                }
+
+                                @Override
+                                public void onShowcaseViewShow(ShowcaseView showcaseView) {
+
+                                }
+
+                                @Override
+                                public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseViewShow(ShowcaseView showcaseView) {
+
+                        }
+
+                        @Override
+                        public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
+
+                        }
+                    });
+                }
+
+                @Override
+                public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
+
+                }
+
+                @Override
+                public void onShowcaseViewShow(ShowcaseView showcaseView) {
+
+                }
+
+                @Override
+                public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
+
+                }
+            });
+        }
+    } //don't open, its a long boring boilerplate lines of codes, it's boring
 }
