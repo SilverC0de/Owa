@@ -1,5 +1,6 @@
 package com.flux.owa;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,9 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -21,7 +25,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.jaygoo.widget.OnRangeChangedListener;
+import com.jaygoo.widget.RangeSeekBar;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkEventListener;
 
@@ -51,7 +58,7 @@ public class FragmentHome extends XFragment {
 
     private List<XLocale> locale;
     private XListView xList;
-    private ProgressBar progress;
+    private LottieAnimationView loading;
     private TextView header_view;
     private SearchView search;
     private ImageView filter_view;
@@ -61,6 +68,8 @@ public class FragmentHome extends XFragment {
     private String query_hint = "";
     private String query_min = "10000";
     private String query_max = "1000000000";
+
+    String show_apartment_type, show_min, show_max;
 
 
     @Override
@@ -81,7 +90,7 @@ public class FragmentHome extends XFragment {
         View view = inflater.inflate(R.layout.fragment_home, parent, false);
 
         xList = view.findViewById(R.id.listings);
-        progress = view.findViewById(R.id.progress);
+        loading = view.findViewById(R.id.loading);
         header_view = view.findViewById(R.id.header);
         search = view.findViewById(R.id.search);
         LinearLayout selection = view.findViewById(R.id.selection);
@@ -105,43 +114,111 @@ public class FragmentHome extends XFragment {
         }
 
         if (query_city != null) search.setQuery(query_city, false);
+        boolean newOpening = ((XCore)fx.getApplication().getApplicationContext()).isNewOpening();
 
 
-        initializeView(view);
         initializeSearch(view);
         initializeSelection(view);
         initializeListings(query_city, query_hint, query_min, query_max, page); //display everything
 
         initializeMore();
+        if (newOpening) initializeFilter();
 
         return view;
     }
 
-    private void initializeView(View v){
-        String tenant = data.getString(XClass.tenant, "0");
-        if (!Objects.equals(tenant, "0")){
-            String tenantImg = data.getString(XClass.tenantImage, "");
-            String tenantDesc = data.getString(XClass.tenantDesc, "");
+    private void initializeFilter(){
+
+        show_min = "";
+        show_max = "";
+        show_apartment_type = "";
+        Dialog dl = new Dialog(fx);
+        dl.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dl.setContentView(R.layout.xml_filter);
+        dl.setCancelable(false);
+        dl.show();
+        Button show = dl.findViewById(R.id.show_results);
+        EditText city = dl.findViewById(R.id.city);
+        ImageView close = dl.findViewById(R.id.close);
+        TextView range = dl.findViewById(R.id.range);
+        RangeSeekBar ranger = dl.findViewById(R.id.ranger);
+
+        ImageView apartent = dl.findViewById(R.id.select_apartment);
+        ImageView bed = dl.findViewById(R.id.select_bed);
+        ImageView room = dl.findViewById(R.id.select_room);
+
+        apartent.setOnClickListener(v->{
+            apartent.setBackgroundResource(R.drawable.button_cover);
+            bed.setBackgroundResource(0);
+            room.setBackgroundResource(0);
+
+            show_apartment_type = "apartment";
+        });
+        bed.setOnClickListener(v->{
+            apartent.setBackgroundResource(0);
+            bed.setBackgroundResource(R.drawable.button_cover);
+            room.setBackgroundResource(0);
+
+            show_apartment_type = "bed";
+        });
+        room.setOnClickListener(v->{
+            apartent.setBackgroundResource(0);
+            bed.setBackgroundResource(0);
+            room.setBackgroundResource(R.drawable.button_cover);
+
+            show_apartment_type = "room";
+        });
+
+        ranger.setOnRangeChangedListener(new OnRangeChangedListener() {
+            @Override
+            public void onRangeChanged(RangeSeekBar view, float leftValue, float rightValue, boolean isFromUser) {
+                show_min = String.valueOf(Math.round(leftValue));
+                show_max = String.valueOf(Math.round(rightValue));
+                String min = cx.getResources().getString(R.string.naira) + NumberFormat.getNumberInstance().format(Math.round(leftValue));
+                String max = cx.getResources().getString(R.string.naira) + NumberFormat.getNumberInstance().format(Math.round(rightValue));
+                range.setText(String.format("Price range between %s and %s", min, max));
+            }
+
+            @Override
+            public void onStartTrackingTouch(RangeSeekBar view, boolean isLeft) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(RangeSeekBar view, boolean isLeft) {
+
+            }
+        });
+
+        show.setOnClickListener(v->{
+            String show_city = city.getText().toString();
 
 
-            LinearLayout layout = v.findViewById(R.id.apartment);
-            SimpleDraweeView layoutImg = v.findViewById(R.id.apartment_image);
-            TextView layoutTxt = v.findViewById(R.id.apartment_text);
+            if ((show_city == null && show_city.isEmpty()) && show_apartment_type.isEmpty() && (show_min.isEmpty() || show_max.isEmpty())){
+                dl.cancel();
+            } else {
+                page = 0;
+                locale.clear();
+                xList.setAdapter(null);
 
-            layout.setVisibility(View.VISIBLE);
-            layoutImg.setImageURI(tenantImg);
-            layoutTxt.setText(tenantDesc);
+                loading.setVisibility(View.VISIBLE);
+                header_view.setText("Based on your filter");
 
+                Bundle bnd = new Bundle();
+                bnd.putString("city", show_city);
+                bnd.putString("hint", show_apartment_type);
+                bnd.putString("min", show_min);
+                bnd.putString("max", show_max);
+                new FragmentHome().setArguments(bnd);
+                initializeListings(XClass.outcast, show_apartment_type, XClass.outcast, XClass.outcast, page);
 
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //open apartment view
-
-                }
-            });
-        }
+                dl.cancel();
+            }
+        });
+        close.setOnClickListener(v-> dl.cancel());
+        ((XCore)fx.getApplication().getApplicationContext()).setNewOpening(false);
     }
+
 
     private void initializeSelection(View v){
         ImageView apartment = v.findViewById(R.id.select_apartment);
@@ -156,7 +233,7 @@ public class FragmentHome extends XFragment {
                 locale.clear();
                 xList.setAdapter(null);
 
-                progress.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.VISIBLE);
                 header_view.setText("Based on your selection");
 
                 Bundle bnd = new Bundle();
@@ -174,7 +251,7 @@ public class FragmentHome extends XFragment {
                 locale.clear();
                 xList.setAdapter(null);
 
-                progress.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.VISIBLE);
                 header_view.setText("Based on your selection");
 
                 Bundle bnd = new Bundle();
@@ -192,7 +269,7 @@ public class FragmentHome extends XFragment {
                 locale.clear();
                 xList.setAdapter(null);
 
-                progress.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.VISIBLE);
                 header_view.setText("Based on your selection");
 
                 Bundle bnd = new Bundle();
@@ -214,7 +291,7 @@ public class FragmentHome extends XFragment {
                 locale.clear();
                 xList.setAdapter(null);
 
-                progress.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.VISIBLE);
 
                 InputMethodManager im = (InputMethodManager)cx.getSystemService(Context.INPUT_METHOD_SERVICE);
                 Objects.requireNonNull(im).hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -304,7 +381,7 @@ public class FragmentHome extends XFragment {
                                     if (array.length() > 18) initializeListings(city, hint, min, max, page++);
                                 }
                             }, 4000);
-                            progress.setVisibility(View.GONE);
+                            loading.setVisibility(View.INVISIBLE);
                         } catch (JSONException ignored){
                             Log.e("silvr", "critical failure at fragment home io and json failure" + ignored.getMessage());
                         }

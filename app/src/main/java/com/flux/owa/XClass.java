@@ -12,6 +12,8 @@ import okhttp3.Response;
 
 class XClass {
     private static final String api = "https://api.owanow.co/alpha/";
+    static String auth = "xy";
+    static String balance = "balance";
     static String tutured = "tutored";
     static String sharedPreferences = "sp";
     static String buildAPI = "alpha"; //alpha
@@ -20,11 +22,13 @@ class XClass {
     static String number = "number";
     static String gender = "gender";
     static String dob = "dob";
+    static String avi = "avi";
     static String okTested = "tess";
     static String induction = "induct";
     static String notification = "notifd";
 
     static String mail = "mail";
+    static String line = "line";
     static String tenant = "tenant";
     static String tenantImage = "tenantimg";
 
@@ -40,6 +44,8 @@ class XClass {
     static String cardYY = "yaf";
 
     static String apiAuthUser = api + "auth.php";
+    static String apiRegister = api + "register.php";
+    static String apiSignIn = api + "signin.php";
     private static String apiUpdateUser = api + "update.php";
     private static String apiPushChat = api + "chat.php";
     static String apiListings = api + "listings.php";
@@ -48,12 +54,21 @@ class XClass {
     static String apiAddToFavourites = api + "save.php";
     static String apiNotification = api + "notification.php";
     static String apiImage = api + "image.php";
+    static String apiBill = api + "bill.php";
+    static String apiUser = api + "user.php";
+    static String apiBilled = api + "billed.php";
+    static String apiBooked = api + "booked.php";
+    static String apiReceipt = api + "receipt.php";
+    static String apiPayRent = api + "payrent.php";
+    static String apiPaidRent = api + "paidrent.php";
 
     static String apiFavourites = api + "saved.php";
     static String apiPaystack = api + "paystack.php";
 
-    static String paystackKei = "pk_test_219fe40f38e54f389a60160061bdcf153f2415d5";
-    static String paystackKey = "pk_live_5f002e17e9fb61784f9db7395d4972c54b511a45";
+    static String test = "pk_test_219fe40f38e54f389a60160061bdcf153f2415d5";
+    static String live = "pk_live_5f002e17e9fb61784f9db7395d4972c54b511a45";
+
+    static String paystackKey = test;
 
     static String twilioApi = "https://api.twilio.com/2010-04-01/Accounts/AC670474f89e8a347a983b1acb713a5799/Messages.json";
     static String twilioAuth = "AC670474f89e8a347a983b1acb713a5799";

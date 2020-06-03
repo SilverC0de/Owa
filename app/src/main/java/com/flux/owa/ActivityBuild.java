@@ -21,6 +21,9 @@ public class ActivityBuild extends XActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build);
 
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorThemeLite));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBar));
+
         Button update = findViewById(R.id.update);
 
         update.setOnClickListener(new View.OnClickListener() {

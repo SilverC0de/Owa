@@ -13,6 +13,11 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/fragment" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bars"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -43,7 +48,6 @@
                 android:id="@+id/chat"
                 android:padding="8dp"
                 android:src="@drawable/chat"/>
-
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -111,7 +115,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Profile"
+                android:text="Account"
                 android:textSize="12sp"
                 android:textColor="@color/colorText"
                 android:id="@+id/account_text"

@@ -24,7 +24,6 @@ public class FragmentXTwo extends XFragment {
     public View baseFragment(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_xtwo, parent, false);
 
-        final EditText message = view.findViewById(R.id.message);
         final EditText name = view.findViewById(R.id.name);
         final EditText number = view.findViewById(R.id.number);
         ImageView back = view.findViewById(R.id.back);
@@ -35,20 +34,16 @@ public class FragmentXTwo extends XFragment {
         name.setText(n);
         number.setText(contact);
 
-        proceed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nme = name.getText().toString();
-                String demands = message.getText().toString();
-                String contact = number.getText().toString();
-                if (contact.length() > 10 && !demands.isEmpty()){
-                    InputMethodManager im = (InputMethodManager)cx.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    Objects.requireNonNull(im).hideSoftInputFromWindow(v.getWindowToken(), 0);
+        proceed.setOnClickListener(v -> {
+            String nme = name.getText().toString();
+            String contact1 = number.getText().toString();
+            if (contact1.length() > 10 && nme.length() > 4){
+                InputMethodManager im = (InputMethodManager)cx.getSystemService(Context.INPUT_METHOD_SERVICE);
+                Objects.requireNonNull(im).hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-                    sendMessage(nme, contact, demands);
-                } else {
-                    Toast.makeText(face, "Tell us what brings you here", Toast.LENGTH_SHORT).show();
-                }
+                sendMessage(nme, contact1, "Hello, I am interested in this apartment");
+            } else {
+                Toast.makeText(fx, "Enter a valid name and phone number", Toast.LENGTH_SHORT).show();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

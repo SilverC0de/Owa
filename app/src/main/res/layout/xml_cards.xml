@@ -137,7 +137,7 @@
                 android:background="@drawable/edit"
                 android:hint="***"
                 android:padding="8dp"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:gravity="center"
                 android:maxLength="4"
                 android:id="@+id/card_cvv"

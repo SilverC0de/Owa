@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Owa</string>
     <string name="naira">&#8358;</string>
-    <string name="cancellation_policy">Free cancellation policy for 48 hours. If you wan\'t to cancel after 48 hours, you will only get
+    <string name="cancellation_policy">Free cancellation policy for 24 hours. If you wan\'t to cancel after 24 hours, you will only get
         a 50% refund.</string>
     <string name="bullet">•</string>
     <string name="agreement">You agree to rent this dwelling on a month-to-month basis, payable in advance on each month calendar year.
@@ -27,6 +27,11 @@ dwelling.
 \n\nViolation of any part of this Agreement or nonpayment of rent when due shall be cause for eviction under applicable code sections.  The prevailing party (shall/shall not) recover reasonable legal service fees involved.
 
 \n\nTenants hereby acknowledge that they have read this Agreement, understand it, agree to it.</string>
+    <string name="lockdown_policy">Please note that we would charge you one month ahead. This ensures that we both have enough time to make decisions on our tenants staying or moving out.</string>
+    <string name="answer1">Owa is a platform where you get apartments you can move into quickly and without hassles.</string>
+    <string name="answer2">It takes an average of 4 days to get your apartment all setup for you to move in</string>
+    <string name="answer3">We have a lockdown policy that allows us decide if you should stay or we should find a budget friendly apartment for you</string>
+    <string name="answer4">Yes, payment of apartment is automated, you can as well fund your wallet and pay up</string>
 
 
     <string-array name="months">

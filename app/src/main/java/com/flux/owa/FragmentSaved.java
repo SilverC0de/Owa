@@ -12,10 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.varunest.sparkbutton.SparkButton;
 
@@ -44,14 +46,14 @@ public class FragmentSaved extends XFragment {
     private int page = 0;
     private List<XLocale> locale;
     private XListView xList;
-    private ProgressBar progress;
+    private LottieAnimationView loading;
 
     @Override
     public View baseFragment(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_saved, parent, false);
 
         xList = view.findViewById(R.id.listings);
-        progress = view.findViewById(R.id.progress);
+        loading = view.findViewById(R.id.loading);
 
         initializeSavedListings(page);
 
@@ -80,50 +82,50 @@ public class FragmentSaved extends XFragment {
             @Override
             public void onResponse(@NotNull Call call, @NotNull final Response result) throws IOException {
                 final String response = result.body().string();
+                Log.e("silvr", response);
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             @SuppressWarnings("ConstantConditions")
                             JSONArray array = new JSONArray(response);
-                            for (int i = 0; i < array.length(); i++){
-                                JSONObject object = array.getJSONObject(i);
-                                String x = object.getString("locale");
-                                String image = object.getString("image");
-                                String name = object.getString("name");
-                                String city = object.getString("city");
-                                String agent = object.getString("agent");
-                                String agent_name = object.getString("agent_name");
-                                String hint = object.getString("hint");
-                                int price = object.getInt("price");
-                                locale.add(new XLocale(x, image, name, hint, city, agent, agent_name, price));
+                            if (array.length() == 0){
+                                loading.setAnimation(R.raw.empty_box);
+                                loading.setRepeatCount(0);
+                                loading.playAnimation();
+                            } else {
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject object = array.getJSONObject(i);
+                                    String x = object.getString("locale");
+                                    String image = object.getString("image");
+                                    String name = object.getString("name");
+                                    String city = object.getString("city");
+                                    String agent = object.getString("agent");
+                                    String agent_name = object.getString("agent_name");
+                                    String hint = object.getString("hint");
+                                    int price = object.getInt("price");
+                                    locale.add(new XLocale(x, image, name, hint, city, agent, agent_name, price));
+                                }
+                                XAdapter adapter = new XAdapter(cx, R.layout.xml_listings, locale);
+                                xList.setVisibility(View.VISIBLE);
+                                xList.setAdapter(adapter);
+                                xList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        FragmentDetails details = new FragmentDetails();
+                                        Bundle bnd = new Bundle();
+                                        bnd.putString("locale", locale.get(position).getI());
+                                        bnd.putInt("cost", locale.get(position).getPrice());
+                                        details.setArguments(bnd);
+                                        fm.beginTransaction().add(R.id.fragment, details).addToBackStack(null).commit();
+                                    }
+                                });
+                                new Handler().postDelayed(() -> {
+                                    if (array.length() > 18) initializeSavedListings(page++);
+                                }, 8000);
+                                loading.setVisibility(View.GONE);
                             }
-                            XAdapter adapter = new XAdapter(cx, R.layout.xml_listings, locale);
-                            xList.setVisibility(View.VISIBLE);
-                            xList.setAdapter(adapter);
-                            xList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    FragmentDetails details = new FragmentDetails();
-                                    Bundle bnd = new Bundle();
-                                    bnd.putString("locale", locale.get(position).getI());
-                                    bnd.putInt("cost", locale.get(position).getPrice());
-                                    details.setArguments(bnd);
-                                    fm.beginTransaction().add(R.id.fragment, details).addToBackStack(null).commit();
-                                }
-                            });
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    page++;
-                                    initializeSavedListings(page);
-                                }
-                            }, 4000);
-                            progress.setVisibility(View.GONE);
-                        } catch (JSONException ignored){
-
-                            Log.e("silvr", "critical failure at fragment home io and json failure");
-                        }
+                        } catch (JSONException ignored){ }
                     }
                 });
             }

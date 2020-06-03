@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/back"
+                android:layout_margin="12dp"
+                android:padding="2dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="8dp"
+                android:text="FAQs"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/colorText" />
+            <Space
+                android:layout_width="44dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/faqs"/>
+
+        <LinearLayout
+            android:id="@+id/question1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:background="@drawable/card">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What is Owa?"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPro"
+                android:padding="12dp"/>
+
+            <TextView
+                android:id="@+id/answer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/answer1"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_margin="2dp"
+                android:textColor="@color/colorText"
+                android:padding="8dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/question2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:background="@drawable/card">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="How long does it take to move into an apartment"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPro"
+                android:padding="12dp"/>
+
+            <TextView
+                android:id="@+id/answer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/answer2"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_margin="2dp"
+                android:textColor="@color/colorText"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/question3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:background="@drawable/card">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="What happens when i don't pay on time"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPro"
+                android:padding="12dp"/>
+
+            <TextView
+                android:id="@+id/answer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/answer3"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_margin="2dp"
+                android:textColor="@color/colorText"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/question4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="4dp"
+            android:padding="8dp"
+            android:background="@drawable/card">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Can I pay my rent through this app?"
+                android:textSize="18sp"
+                android:textColor="@color/colorTextPro"
+                android:padding="12dp"/>
+
+            <TextView
+                android:id="@+id/answer4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/answer4"
+                android:textSize="14sp"
+                android:visibility="gone"
+                android:layout_margin="2dp"
+                android:textColor="@color/colorText"
+                android:padding="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

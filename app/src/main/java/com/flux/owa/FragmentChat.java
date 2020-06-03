@@ -230,7 +230,7 @@ public class FragmentChat extends XFragment {
                                 progress.setVisibility(View.GONE);
                                 apartment.setVisibility(View.VISIBLE);
 
-                                Toast.makeText(face, "Internal server error" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(fx, "Internal server error" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

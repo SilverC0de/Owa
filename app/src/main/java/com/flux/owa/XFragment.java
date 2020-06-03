@@ -19,7 +19,7 @@ import okhttp3.OkHttpClient;
 
 public abstract class XFragment extends Fragment {
 
-    Activity face;
+    Activity fx;
     Context cx;
     SharedPreferences data;
     FragmentManager fm;
@@ -31,19 +31,19 @@ public abstract class XFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         cx = context;
-        face = getActivity();
+        fx = getActivity();
         fm = getFragmentManager();
         httpClient = new OkHttpClient();
         data = cx.getSharedPreferences(XClass.sharedPreferences, Context.MODE_PRIVATE);
         mail = data.getString(XClass.mail, null);
-        face.getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
-        if (Build.VERSION.SDK_INT > 22) face.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        fx.getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+        if (Build.VERSION.SDK_INT > 22) fx.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        navigation = face.findViewById(R.id.navigation);
+        navigation = fx.findViewById(R.id.navigation);
         return baseFragment(inflater, container, savedInstanceState);
     }
 

@@ -33,7 +33,13 @@ public class FragmentSuccess extends XFragment {
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fm.beginTransaction().replace(R.id.fragment, new FragmentAccount()).commit();
+                Bundle bnd = new Bundle();
+                bnd.putBoolean("booking", true);
+
+                FragmentAccount account = new FragmentAccount();
+                account.setArguments(bnd);
+
+                fm.beginTransaction().replace(R.id.fragment, account).commit();
             }
         });
         return view;

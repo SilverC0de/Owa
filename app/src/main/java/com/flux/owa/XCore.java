@@ -3,7 +3,10 @@ package com.flux.owa;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +15,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import co.paystack.android.PaystackSdk;
 import io.realm.Realm;
@@ -23,6 +28,17 @@ import okhttp3.Response;
 
 public class XCore extends Application {
 
+    public boolean isNewOpening() {
+        return newOpening;
+    }
+
+    public void setNewOpening(boolean newOpening) {
+        this.newOpening = newOpening;
+    }
+
+    boolean newOpening = true;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,9 +46,47 @@ public class XCore extends Application {
         Fresco.initialize(getApplicationContext());
         PaystackSdk.initialize(getApplicationContext());
 
+
+
+        //initialize user
+
+        SharedPreferences data = getSharedPreferences(XClass.sharedPreferences, MODE_PRIVATE);
+
+        StringRequest rx = new StringRequest(com.android.volley.Request.Method.POST, XClass.apiUser, response ->{
+            try {
+                JSONObject obj = new JSONObject(response);
+                String balance = obj.getString("wallet");
+                String auth = obj.getString("auth");
+                String tenant = obj.getString("tenant");
+
+                SharedPreferences.Editor e = data.edit();
+                e.putString(XClass.balance, balance);
+                e.putString(XClass.tenant, tenant);
+                e.apply();
+
+
+            } catch (JSONException ignored){}
+        }, err ->{ }){
+            @Override
+            protected Map<String, String> getParams() {
+                String mail = data.getString(XClass.mail, null);
+
+                HashMap<String, String> post = new HashMap<>();
+                post.put("mail", mail);
+                return post;
+            }
+        };
+        Volley.newRequestQueue(getApplicationContext()).getCache().clear();
+        Volley.newRequestQueue(getApplicationContext()).add(rx);
+
+
         /////////////////////////////////////////////////////////////////////////
+        //initialize apartments
 
 
+
+
+        ////////////////////////////////////////////////////////////////////////
         OkHttpClient httpClient = new OkHttpClient();
         Request init = new Request.Builder().url("https://api.owanow.co/init.txt").build();
         httpClient.newCall(init).enqueue(new Callback() {

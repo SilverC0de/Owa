@@ -3,11 +3,9 @@ package com.flux.owa;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,11 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-
-import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
-import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import java.text.MessageFormat;
 import java.text.NumberFormat;
@@ -52,9 +45,9 @@ public class FragmentReserve extends XFragment implements AdapterView.OnItemSele
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (Build.VERSION.SDK_INT > 22) face.getWindow().getDecorView().setSystemUiVisibility(face.getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        if (Build.VERSION.SDK_INT > 22) fx.getWindow().getDecorView().setSystemUiVisibility(fx.getWindow().getDecorView().getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        face.getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccent));
+        fx.getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccent));
     }
 
     @Override
@@ -68,7 +61,7 @@ public class FragmentReserve extends XFragment implements AdapterView.OnItemSele
     @Override
     public View baseFragment(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_reserve, parent, false);
-        face.getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccent));
+        fx.getWindow().setStatusBarColor(getResources().getColor(R.color.colorAccent));
 
         availability = view.findViewById(R.id.calculate_availability);
         String guest = "1";
@@ -104,9 +97,9 @@ public class FragmentReserve extends XFragment implements AdapterView.OnItemSele
             @Override
             public void onClick(View v) {
                 if (param_month == 0){
-                    Toast.makeText(face, "Please specify month duration", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(fx, "Please specify month duration", Toast.LENGTH_SHORT).show();
                 } else {
-                    final Dialog dl = new Dialog(face);
+                    final Dialog dl = new Dialog(fx);
                     dl.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dl.setContentView(R.layout.xml_agreement);
                     CheckBox check = dl.findViewById(R.id.agree_checker);

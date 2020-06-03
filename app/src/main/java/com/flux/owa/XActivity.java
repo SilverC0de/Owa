@@ -18,6 +18,7 @@ public abstract class XActivity extends AppCompatActivity {
     OkHttpClient httpClient;
 
 
+    // two months, 2, lockdown,
 
 
     @Override

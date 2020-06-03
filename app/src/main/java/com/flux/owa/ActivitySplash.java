@@ -21,6 +21,11 @@ public class ActivitySplash extends XActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        new Handler().post(()->{
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorThemeLite));
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBar));
+        });
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -33,7 +38,7 @@ public class ActivitySplash extends XActivity {
                 else if (mail == null)
                     startActivity(new Intent(getApplicationContext(), ActivityAccess.class));
                 else if (!okTested)
-                    startActivity(new Intent(getApplicationContext(), ActivityTIPI.class));
+                    startActivity(new Intent(getApplicationContext(), ActivityMain.class)); //tipi
                 else
                     startActivity(new Intent(getApplicationContext(), ActivityMain.class));
                 finish();

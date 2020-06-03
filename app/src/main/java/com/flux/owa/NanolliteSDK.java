@@ -175,4 +175,9 @@ final class NanolliteSDK {
         }
     }
 
+    public static String cardLint(String card) {
+        if (card == null) return null;
+        char delimiter = ' ';
+        return card.replaceAll(".{4}(?!$)", "$0" + delimiter);
+    }
 }

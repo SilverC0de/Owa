@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/beamer"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:padding="32dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_weight="1.2"
+        android:textColor="@color/colorTextPro" />
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorRed"
+        android:textSize="14sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"/>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:visibility="invisible"
+        app:lottie_rawRes="@raw/loading"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:textColor="@color/colorTextHint"
+            android:textSize="12sp"
+            android:layout_marginStart="12dp" />
+        <EditText
+            android:id="@+id/access_mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:hint="you@mail.com"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorText"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="@color/colorTextHint"
+            android:textSize="12sp"
+            android:layout_marginStart="12dp" />
+        <EditText
+            android:id="@+id/access_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:textColor="@color/colorText"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+        <Button
+            android:id="@+id/access_continue"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Login"
+            android:layout_gravity="center"
+            android:background="@drawable/button_pro"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/colorPrimary"
+            style="?attr/borderlessButtonStyle" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_gravity="center">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:gravity="center"
+            android:textColor="@color/colorText" />
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="Create Account" />
+    </LinearLayout>
+</LinearLayout>

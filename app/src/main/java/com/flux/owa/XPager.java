@@ -41,6 +41,7 @@ public class XPager extends PagerAdapter {
         SimpleDraweeView img = view.findViewById(R.id.img);
 
         img.setImageURI(images.get(position));
+
 //        img.setOnClickListener(v->{
 //            Dialog dl = new Dialog(fx);
 //            dl.requestWindowFeature(Window.FEATURE_NO_TITLE);

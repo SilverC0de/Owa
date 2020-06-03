@@ -1,5 +1,6 @@
 package com.flux.owa;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,11 +17,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
 import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.ActionViewTarget;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.tmall.ultraviewpager.UltraViewPager;
+import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkEventListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -47,7 +50,7 @@ public class FragmentDetails extends XFragment {
 
 
     private UltraViewPager pager;
-    private ProgressBar progress;
+    private LottieAnimationView loading;
     private String locale = null;
 
 
@@ -55,8 +58,9 @@ public class FragmentDetails extends XFragment {
     public View baseFragment(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, parent, false);
 
-        progress = view.findViewById(R.id.progress);
+        loading = view.findViewById(R.id.loading);
         ImageView close = view.findViewById(R.id.close);
+        SparkButton fav = view.findViewById(R.id.list_save);
         Button reserve = view.findViewById(R.id.reserve);
 
         close.setOnClickListener(new View.OnClickListener() {
@@ -66,12 +70,50 @@ public class FragmentDetails extends XFragment {
             }
         });
 
+        fav.setEventListener(new SparkEventListener() {
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+
+                //i
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+                //set checked
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+                OkHttpClient httpClient = new OkHttpClient();
+                SharedPreferences data = cx.getSharedPreferences(XClass.sharedPreferences, Context.MODE_PRIVATE);
+                String mail = data.getString(XClass.mail, null);
+
+                Request request = new Request.Builder().url(XClass.apiAddToFavourites + "?mail=" + mail + "&locale=" + locale).build();
+                httpClient.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                //saved
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
         Bundle bnd = getArguments();
         if (bnd != null) locale = bnd.getString("locale");
 
         boolean tutured = data.getBoolean(XClass.tutured, false);
         if (!tutured){
-            ShowcaseView e = new ShowcaseView.Builder(face)
+            ShowcaseView e = new ShowcaseView.Builder(fx)
                     .setContentTitle("Apartment")
                     .setContentText("Scroll down to view apartment amenities or request for a tour")
                     .hideOnTouchOutside()
@@ -83,34 +125,6 @@ public class FragmentDetails extends XFragment {
                     SharedPreferences.Editor e = data.edit();
                     e.putBoolean(XClass.tutured, true);
                     e.apply();
-                    ShowcaseView ev = new ShowcaseView.Builder(face)
-                            .setTarget(new ViewTarget(reserve))
-                            .setContentTitle("Reserve")
-                            .setContentText("Click on the 'Reserve' button if you're interested in this apartment")
-                            .hideOnTouchOutside()
-                            .setStyle(R.style.HighlightTheme)
-                            .build();
-                    ev.setOnShowcaseEventListener(new OnShowcaseEventListener() {
-                        @Override
-                        public void onShowcaseViewHide(ShowcaseView showcaseView) {
-
-                        }
-
-                        @Override
-                        public void onShowcaseViewDidHide(ShowcaseView showcaseView) {
-
-                        }
-
-                        @Override
-                        public void onShowcaseViewShow(ShowcaseView showcaseView) {
-
-                        }
-
-                        @Override
-                        public void onShowcaseViewTouchBlocked(MotionEvent motionEvent) {
-
-                        }
-                    });
                 }
 
                 @Override
@@ -146,8 +160,8 @@ public class FragmentDetails extends XFragment {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        progress.setVisibility(View.GONE);
-                        Toast.makeText(face, "Unable to fetch details for listing", Toast.LENGTH_SHORT).show();
+                        loading.setVisibility(View.GONE);
+                        Toast.makeText(fx, "Unable to fetch details for listing", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -160,7 +174,7 @@ public class FragmentDetails extends XFragment {
                     @Override
                     public void run() {
                         try {
-                            progress.setVisibility(View.GONE);
+                            loading.setVisibility(View.GONE);
                             int cost = 0;
                             String check = "1";
                             String xhint = XClass.outcast;
@@ -336,7 +350,7 @@ public class FragmentDetails extends XFragment {
                                 }
                             });
                         } catch (JSONException i) {
-                            progress.setVisibility(View.GONE);
+                            loading.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -358,7 +372,7 @@ public class FragmentDetails extends XFragment {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 String json = response.body().string();
-                face.runOnUiThread(() -> {
+                fx.runOnUiThread(() -> {
                     try {
                         JSONArray arr = new JSONArray(json);
                         if (arr.length() != 0){
@@ -371,19 +385,21 @@ public class FragmentDetails extends XFragment {
                     } catch (JSONException ignored){
                         img.add(index); //add the default image if there are no images
                     } finally {
-                        XPager adapter = new XPager(face, cx, img);
-                        pager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
-                        pager.setBackgroundResource(0);
-                        pager.setAdapter(adapter);
-                        pager.initIndicator();
-                        pager.getIndicator()
-                                .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
-                                .setFocusColor(getResources().getColor(R.color.colorPrimary))
-                                .setNormalColor(getResources().getColor(R.color.colorLite))
-                                .setRadius((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
-                        pager.getIndicator().setMargin(0,0,0,20);
-                        pager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-                        pager.getIndicator().build();
+                        try {
+                            XPager adapter = new XPager(fx, cx, img);
+                            pager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
+                            pager.setBackgroundResource(0);
+                            pager.setAdapter(adapter);
+                            pager.initIndicator();
+                            pager.getIndicator()
+                                    .setOrientation(UltraViewPager.Orientation.HORIZONTAL)
+                                    .setFocusColor(getResources().getColor(R.color.colorPrimary))
+                                    .setNormalColor(getResources().getColor(R.color.colorLite))
+                                    .setRadius((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()));
+                            pager.getIndicator().setMargin(0,0,0,20);
+                            pager.getIndicator().setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+                            pager.getIndicator().build();
+                        } catch (IllegalStateException ignored){}
                     }
                 });
             }

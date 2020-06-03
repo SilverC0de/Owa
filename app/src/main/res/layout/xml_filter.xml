@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Property type"
+            android:textColor="@color/colorTextPro"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:padding="12dp" />
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_margin="4dp"
+            android:layout_gravity="center"
+            android:src="@drawable/close" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/selection">
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:elevation="2dp"
+            android:id="@+id/select_apartment"
+            android:padding="4dp"
+            android:src="@drawable/entire_apartment"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:elevation="2dp"
+            android:padding="4dp"
+            android:id="@+id/select_bed"
+            android:src="@drawable/bed_space"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:elevation="2dp"
+            android:padding="4dp"
+            android:id="@+id/select_room"
+            android:src="@drawable/private_room"/>
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter a city"
+        android:textColor="@color/colorTextPro"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:hint="City"
+        android:textColorHint="@color/colorTextHint"
+        android:textColor="@color/colorText"
+        android:layout_margin="12dp"
+        android:background="@drawable/edit" />
+
+    <TextView
+        android:id="@+id/range"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price range"
+        android:textColor="@color/colorTextPro"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="12dp" />
+
+    <com.jaygoo.widget.RangeSeekBar
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_gravity="center"
+        android:id="@+id/ranger"
+        app:rsb_gravity="center"
+        app:rsb_min="10000"
+        app:rsb_max="400000"
+        app:rsb_progress_color="@color/colorAccent"
+        app:rsb_progress_height="4dp"
+        app:rsb_mode="range"
+        app:rsb_indicator_background_color="#00000000" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="Show Results"
+        android:background="@drawable/button"
+        android:layout_margin="8dp"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/show_results"
+        style="?attr/borderlessButtonStyle" />
+</LinearLayout>

@@ -39,31 +39,6 @@
                 android:queryHint="Try searching for a location" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/apartment"
-            android:visibility="gone"
-            android:orientation="vertical"
-            android:padding="12dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/card">
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:id="@+id/apartment_image"
-                app:roundedCornerRadius="20dp"
-                app:placeholderImage="@drawable/view" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/apartment_text"
-                android:gravity="center"
-                android:textSize="16sp"
-                android:padding="8dp"
-                android:textColor="@color/colorTextPro"
-                android:text="Your apartment at ahmadiya" />
-        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -71,7 +46,6 @@
             android:layout_weight="1"
             android:overScrollMode="never"
             android:scrollbars="none">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -131,15 +105,16 @@
                     android:overScrollMode="never"
                     android:scrollbars="none"
                     android:visibility="invisible"
-                    android:dividerHeight="40dp"
+                    android:dividerHeight="20dp"
                     android:divider="#00000000"
                     android:id="@+id/listings" />
-                <ProgressBar
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:id="@+id/progress"
-                    android:layout_margin="40dp"
-                    android:layout_gravity="center"/>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    app:lottie_rawRes="@raw/loading"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"/>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

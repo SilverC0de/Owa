@@ -4,21 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/beamer"
     tools:context=".ActivitySplash">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sorry, we could no longer support this version of OWA, please update app on playstore"
+        android:gravity="center"
+        android:padding="12dp"
+        android:textColor="@color/colorText" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/owalogo"
         android:layout_centerInParent="true"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sorry, we could no longer support this version of OWA, please update app on playstore."
-        android:gravity="center"
-        android:padding="12dp"
-        android:textColor="@color/colorText"
-        android:layout_above="@id/update" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
